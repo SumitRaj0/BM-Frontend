@@ -1,5 +1,5 @@
 const API_BASE =
-  (import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? 'https://bm-backend-7wsi.vercel.app' : '')) +
+  (import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? 'https://bm-backend-0ebz.onrender.com' : '')) +
   '/api';
 
 export interface Booking {
