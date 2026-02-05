@@ -24,7 +24,7 @@ export default function BookingList() {
     loadBookings();
   }, [loadBookings]);
 
-  if (loading) {
+  if (loading && bookings.length === 0) {
     return (
       <div className="flex justify-center py-12">
         <p className="text-slate-500">Loading bookings…</p>
@@ -41,7 +41,7 @@ export default function BookingList() {
           onClick={loadBookings}
           className="rounded bg-slate-700 text-white px-3 py-1.5 text-sm hover:bg-slate-600 transition"
         >
-          Fetch all bookings
+          Try again
         </button>
       </div>
     );
@@ -51,38 +51,19 @@ export default function BookingList() {
     return (
       <div className="text-center py-12">
         <p className="text-slate-600 mb-4">No bookings yet.</p>
-        <div className="flex flex-wrap justify-center gap-3">
-          <button
-            type="button"
-            onClick={loadBookings}
-            className="rounded border border-slate-400 px-4 py-2 text-slate-700 hover:bg-slate-100 transition"
-          >
-            Fetch all bookings
-          </button>
-          <Link
-            to="/new"
-            className="inline-block rounded bg-slate-700 text-white px-4 py-2 hover:bg-slate-600 transition"
-          >
-            Create your first booking
-          </Link>
-        </div>
+        <Link
+          to="/new"
+          className="inline-block rounded bg-slate-700 text-white px-4 py-2 hover:bg-slate-600 transition"
+        >
+          Create your first booking
+        </Link>
       </div>
     );
   }
 
   return (
     <div>
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-        <h1 className="text-xl font-semibold">All Bookings</h1>
-        <button
-          type="button"
-          onClick={loadBookings}
-          disabled={loading}
-          className="rounded bg-slate-700 text-white px-4 py-2 text-sm hover:bg-slate-600 disabled:opacity-50 transition"
-        >
-          {loading ? 'Fetching…' : 'Fetch all bookings'}
-        </button>
-      </div>
+      <h1 className="text-xl font-semibold mb-4">All Bookings</h1>
       <ul className="space-y-3">
         {bookings.map((b) => (
           <li
